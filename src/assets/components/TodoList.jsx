@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Moon, Sun, Edit2, Trash2 } from "lucide-react";
-import qdruv from '../components/img/qdruv.png'
+import qdruv from "../components/img/qdruv.png";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -20,7 +20,10 @@ const TodoList = () => {
       );
       setEditingId(null);
     } else {
-      setTodos([{ id: Date.now(), text: inputText, completed: false }, ...todos]);
+      setTodos([
+        { id: Date.now(), text: inputText, completed: false },
+        ...todos,
+      ]);
     }
     setInputText("");
   };
@@ -49,12 +52,17 @@ const TodoList = () => {
   });
 
   return (
-    <div className={`min-h-screen p-6 ${isDarkMode ? "bg-gray-900" : "bg-gray-50"}`}>
+    <div
+      className={`min-h-screen p-6 ${
+        isDarkMode ? "bg-gray-900" : "bg-gray-50"
+      }`}
+    >
       <div className="max-w-2xl mx-auto">
-
-        <h1 className={`text-3xl font-bold text-center mb-6 ${
-          isDarkMode ? "text-white" : "text-gray-800"
-        }`}>
+        <h1
+          className={`text-3xl font-bold text-center mb-6 ${
+            isDarkMode ? "text-white" : "text-gray-800"
+          }`}
+        >
           TODO LIST
         </h1>
 
@@ -104,12 +112,15 @@ const TodoList = () => {
             </button>
           ))}
         </div>
-        
 
         {filteredTodos.length === 0 ? (
-          <p className={`text-center py-10 ${
-            isDarkMode ? "text-gray-400" : "text-gray-600"
-          }`}>loading...</p>
+          <p
+            className={`text-center py-10 ${
+              isDarkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            loading...
+          </p>
         ) : (
           <div className="space-y-2">
             {filteredTodos.map((todo) => (
@@ -119,37 +130,47 @@ const TodoList = () => {
                   isDarkMode ? "bg-gray-800" : "bg-white"
                 }`}
               >
-                
                 <input
                   type="checkbox"
                   checked={todo.completed}
                   onChange={() => toggleComplete(todo.id)}
                   className="w-5 h-5 cursor-pointer"
                 />
-                <span className={`flex-1 ${
-                  todo.completed
-                    ? "line-through text-gray-400"
-                    : isDarkMode
-                    ? "text-gray-200"
-                    : "text-gray-800"
-                }`}>{todo.text}</span>
+                <span
+                  className={`flex-1 ${
+                    todo.completed
+                      ? "line-through text-gray-400"
+                      : isDarkMode
+                      ? "text-gray-200"
+                      : "text-gray-800"
+                  }`}
+                >
+                  {todo.text}
+                </span>
 
-                <button onClick={() => startEdit(todo)} className="text-indigo-500 cursor-pointer">
+                <button
+                  onClick={() => startEdit(todo)}
+                  className="text-indigo-500 cursor-pointer"
+                >
                   <Edit2 size={18} />
                 </button>
 
-                <button onClick={() => deleteTodo(todo.id)} className="text-red-500 cursor-pointer">
+                <button
+                  onClick={() => deleteTodo(todo.id)}
+                  className="text-red-500 cursor-pointer"
+                >
                   <Trash2 size={18} />
                 </button>
               </div>
             ))}
           </div>
         )}
-       <div className="flex justify-center"><img src={qdruv} alt="" /></div>
+        <div className="flex justify-center">
+          <img src={qdruv} alt="" />
+        </div>
       </div>
     </div>
   );
 };
 
 export default TodoList;
- 
